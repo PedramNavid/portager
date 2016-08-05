@@ -9,13 +9,14 @@ The lesson plan
 3. Install R Packages
 4. Starting a Project
 
-## The Fun (?) Stuff
+## The Fun (and not so fun) Stuff
 5. Visualizing data
 6. Communicating data
 7. Transforming data
 8. Modeling data
 9. Importing data
 10. Tidying data
+11. Version control
 
 ## The Meta Stuff
 11. The Science of Data Science
