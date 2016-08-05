@@ -1,14 +1,23 @@
 # Lesson Plan
 
 This is a work in progress and is really here to capture my thoughts before I forget them. 
+The lesson plan 
 
+## The Essential Stuff
 1. Introduction to R
 2. Installing R & RStudio
 3. Install R Packages
 4. Starting a Project with ProjectTemplate
+
+## The Fun (?) Stuff
 5. Visualizing data
 6. Communicating data
-6. Trasforming data
-7. Importing data
-8. Tidying 
-9. Modeling Data
+7. Transforming data
+8. Modeling data
+9. Importing data
+10. Tidying data
+
+## The Meta Stuff
+11. The Science of Data Science
+12. The Art of Data Science
+13. Additional resources
