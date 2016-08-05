@@ -21,3 +21,10 @@ The lesson plan
 11. The Science of Data Science
 12. The Art of Data Science
 13. Additional resources
+
+
+
+.....
+Style Guide: http://adv-r.had.co.nz/Style.html
+Cheat Sheets: https://www.rstudio.com/resources/cheatsheets/
+Getting Started Resources: http://scs.math.yorku.ca/index.php/R:_Getting_started_with_R
