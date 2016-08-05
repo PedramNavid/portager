@@ -7,7 +7,7 @@ The lesson plan
 1. Introduction to R
 2. Installing R & RStudio
 3. Install R Packages
-4. Starting a Project with ProjectTemplate
+4. Starting a Project
 
 ## The Fun (?) Stuff
 5. Visualizing data
