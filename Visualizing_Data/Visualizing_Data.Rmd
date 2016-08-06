@@ -1,0 +1,63 @@
+---
+title: "Visualizing Data"
+author: "Pedram Navid"
+date: "August 5, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+Visualizing data is where you'll find the most bang for your R-buck and so I've
+decided to start there rather than with the more mundane, tedious, and frankly
+boring tasks of importing and cleaning data.
+
+That's not to say that those tasks aren't important, but hopefully by starting
+with the fun stuff, I'll win you over, and once it's time to discuss importing
+Excel files and doing data quality checks you'll stick around.
+
+There's more than one way to get started with visualization: there's base R
+graphics, lattice, ggplot2 and others. In line with this course's philosophy
+we'll be using ggplot2, which is part of the *tidyverse* of packages (these
+are packages that work well together and share a common philosophy) mostly
+authored by Hadley Wickham. Other packages in the tidyverse include dplyr and 
+tidyr, and we'll be using those frequently as well. 
+
+## Visual Exploration of Data
+
+**ggplot2** has two main functions: **qplot** and **ggplot**. **qplot** is great
+for initial data exploration to quickly see trends, distributions, and outliers
+without focusing too much on visual presentation. *ggplot* is used once you'd
+like to refine the visual display of data for sharing with others. 
+
+```{r}
+# mtcars was extracted from the 1974 Motor Trend US magazine, and comprises
+# fuel consumption and 10 aspects of automobile design and performance for 
+# 32 automobiles (1973–74 models).
+library(ggplot2)
+head(mtcars)
+
+# What's the relationship between mileage and horsepower?
+qplot(data=mtcars, mpg, hp)
+
+# Is there a difference in that relationship when looking at automatic (0) or manual (1)?
+qplot(data=mtcars, mpg, hp, colour = am)
+```
+
+Notice that ggplot thinks that the variable **am** that describes whether
+a car is automatic or manual is a continous variable, when it is actually
+categorical? Let's fix that by converting **am** into a factor:
+
+```{r}
+qplot(data=mtcars, mpg, hp, color = factor(am))
+```
+
+There we go. Now it's clear that **am** is a categorical variable. 
+
+```{r}
+# Break out the plots further by number of gears.
+qplot(data=mtcars, mpg, hp, color = factor(am), facets = ~ gear)
+```
