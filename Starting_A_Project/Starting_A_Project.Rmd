@@ -5,7 +5,6 @@ date: "August 5, 2016"
 output: html_document
 ---
 
-
 # Starting a Project
 
 Structuring your data analaysis projects in a logical way is an important
@@ -85,6 +84,16 @@ finalize your analysis, including bug fixes and enhancements.
 Create your first bit of code by choosing **File > New File > R Markdown**. 
 ![R Markdown Screen](img/new_r_markdown.png)
 
-Give your code a name and you'll see an Rmarkdown template 
+Give your code a name and you'll see an Rmarkdown template. 
+
+The top bit of the Rmarkdown document provides some general metadata 
+which will become part of your document once you render it. 
+
+You'll see some example code below, which you can freely delete. For now,
+however, Knit the document. Click the Knit button in the menubar, or choose
+File > Knit Document and you'll see a document generated. 
+
+We'll cover RMarkdown documents in detail later, but this general workflow
+will be used throughout the course. 
 
 
