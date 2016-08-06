@@ -1,4 +1,12 @@
-# 4. Starting a Project
+---
+title: "Starting an R Project"
+author: "Pedram Navid"
+date: "August 5, 2016"
+output: html_document
+---
+
+
+# Starting a Project
 
 Structuring your data analaysis projects in a logical way is an important
 step toward the five key pillars of good data analysis: reproducability, 
@@ -74,6 +82,9 @@ finalize your analysis, including bug fixes and enhancements.
 
 ## Your First Code
 
-Create your first bit of code by choosing **File > New File > R Markdown**
+Create your first bit of code by choosing **File > New File > R Markdown**. 
+![R Markdown Screen](img/new_r_markdown.png)
+
+Give your code a name and you'll see an Rmarkdown template 
 
 
