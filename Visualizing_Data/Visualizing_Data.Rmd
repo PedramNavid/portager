@@ -19,14 +19,16 @@ That's not to say that those tasks aren't important, but hopefully by starting
 with the fun stuff, I'll win you over, and once it's time to discuss importing
 Excel files and doing data quality checks you'll stick around.
 
-There's more than one way to get started with visualization: there's base R
-graphics, lattice, ggplot2 and others. In line with this course's philosophy
-we'll be using ggplot2, which is part of the *tidyverse* of packages (these
-are packages that work well together and share a common philosophy) mostly
+There's more than one way to skin a cat with visualization (sorry #rcatladies):
+there's base R graphics, lattice, ggplot2 and others. In line with this course's
+philosophy we'll be using ggplot2, which is part of the *tidyverse* of packages
+(these are packages that work well together and share a common philosophy) mostly
 authored by Hadley Wickham. Other packages in the tidyverse include dplyr and 
 tidyr, and we'll be using those frequently as well. 
 
 ## Visual Exploration of Data
+
+### qplot
 
 **ggplot2** has two main functions: **qplot** and **ggplot**. **qplot** is great
 for initial data exploration to quickly see trends, distributions, and outliers
@@ -39,6 +41,12 @@ like to refine the visual display of data for sharing with others.
 # 32 automobiles (1973–74 models).
 library(ggplot2)
 head(mtcars)
+
+# What's the distribution of hp look like
+qplot(data=mtcars, hp) 
+
+# Shrink the bins down to 25-hp increments
+qplot(data=mtcars, hp, binwidth=25)
 
 # What's the relationship between mileage and horsepower?
 qplot(data=mtcars, mpg, hp)
@@ -61,3 +69,71 @@ There we go. Now it's clear that **am** is a categorical variable.
 # Break out the plots further by number of gears.
 qplot(data=mtcars, mpg, hp, color = factor(am), facets = ~ gear)
 ```
+
+## ggplot
+
+qplot is *okay* but it's not well suited for analysis that will be shared, and if
+analysis isn't being shared, then it's not very useful. 
+
+ggplot is the stronger, beefier cousin of qplot. Let's start with a simple chart
+and beef it up step by step.
+
+```{r}
+# This data set gives the measurements in cms of the variables sepal length 
+# and width and petal length and width, respectively, for 50 flowers from each 
+# of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+summary(iris)
+
+# Our first attempt at plotting Sepal Length
+ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram()
+
+# Now let's fix the bins of the histogram
+ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram(binwidth=0.5)
+
+# Let's add some labels
+ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram(binwidth=0.5) + 
+  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
+         title = "Distribution of Sepal Length")
+
+# Let's break it out by species
+ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram(binwidth=0.5) + 
+  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
+         title = "Distribution of Sepal Length") + 
+  facet_wrap(~ Species)
+
+# Maybe one column will be easier to visualize
+ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram(binwidth=0.5) + 
+  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
+         title = "Distribution of Sepal Length") + 
+  facet_wrap(~ Species, ncol = 1)
+
+```
+
+Normally, you wouldn't code like I did above, and I won't do that again, but 
+I wanted to show the progression of a simple plot to more and more complex as 
+you start to formula what it is you might want to look at. 
+
+It's good practice to always plot the data. Plot the data in as many different 
+ways as you can to find interesting outcomes. You won't necessarily show every
+attempt (in fact, you'll probably show 1% of what you actually do), but it's
+import to explore to better understand what the data might be telling you.
+
+Let's continue but with two variables
+
+```{r}
+ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point()
+
+# Odd, there's two distinct clusters. What's going on here?
+ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point(aes(colour = Species))
+
+# Well that was easy. 
+```
+
