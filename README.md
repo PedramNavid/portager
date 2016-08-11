@@ -1,6 +1,6 @@
-# portageR
+# portager
 
-An R package to teach non-R users about R, in R. 
+An R package to teach non-R users about R, in R. (NOT YET DONE.)
 
 ## Background
 
@@ -10,7 +10,7 @@ canoe on your head and a bag full of gear hanging off your shoulders. You're pro
 
 In short, learning R is a lot like going on a portage. However, like a portage, the end result is something really beautiful.
 
-The goal of portageR is to guide you along that trip, hopefully making it a slightly easier trek. 
+The goal of **portager** is to guide you along that trip, hopefully making it a slightly easier trek. 
 
 ## Philosophy
 
