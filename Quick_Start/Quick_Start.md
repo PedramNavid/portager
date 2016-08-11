@@ -1,6 +1,6 @@
 A Short Hike with R
 ========================================================
-author: Pedram Roshdinavid
+author: Pedram Navid
 date: August 8 2016
 autosize: true
 
@@ -75,18 +75,3 @@ No slide can explain it all, so let's fire up RStudio and walk through it
 *** 
 ![RStudio GUI](img/rstudio-windows.png)
 
-Did I Do This Right?
-========================================================
-Things to cover:
-
-* setup package for proxy
-* install libraries
-* load library
-* interactive environment
-
-***
-
-* create a project
-* source 
-* get help
-* cheat sheets
