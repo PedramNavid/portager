@@ -1,7 +1,6 @@
 # Lesson Plan
 
 This is a work in progress and is really here to capture my thoughts before I forget them. 
-The lesson plan 
 
 ## The Essential Stuff
 1. Introduction to R

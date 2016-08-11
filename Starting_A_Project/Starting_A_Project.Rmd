@@ -45,9 +45,8 @@ project grows.
 
 * my_project/
     * data/
-      * raw/
-      * datasets/
-    * doc/
+        * raw/
+        * datasets/
     * graphs/
     * reports/
     * src/
@@ -69,7 +68,7 @@ the database every time you rerun your project.
 documentation about your analysis, you can store it here. 
 * `graphs`: any plots or graphs you generate should be save here as an image.
 * `reports`: any reports you output, such as PDF and Word documents using
-R Markdown notebooks are saved here (note: there's no easy way I can think of to output directly into here from src folder)
+R Markdown notebooks are saved here
 * `src`: this is where you store the meat and potatoes of your project: your R
 code and markdown documents. 
 * `tests`: any test cases you've created go here. This is where you would
