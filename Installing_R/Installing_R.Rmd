@@ -1,5 +1,5 @@
 ---
-title: "Installing_R"
+title: "Installing R"
 author: "Pedram Navid"
 date: "August 14, 2016"
 output: ioslides_presentation
