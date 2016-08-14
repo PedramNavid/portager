@@ -41,13 +41,17 @@ library(readxl)
 
 ## What do they do??
 * dplyr: introduces grammar of data manipulation.  
-*names(d)[names(d)=="beta"] <- "two"* vs. *rename(d, beta = two)*
+`names(d)[names(d)=="beta"] <- "two"` vs.  
+ `rename(d, beta = two)`
 * tidyr: reshapes your data to make it tidy, work nice with other packages. 
 * ggplot2: pretty, robust plotting graphics. 
 * readxl: read excel files quickly and generally painlessly
 * stringr: easier manipulation of strings/characters.
 * lubridate: easier manipulation of dates, consider:  
-*ymd("2015-03-29") ; ymd("2015-Mar-29") ; dmy("29-March-15"); mdy("3-29-15")*
+`ymd("2015-03-29")  `  
+`ymd("2015-Mar-29")  `  
+`dmy("29-March-15")  `  
+`mdy("3-29-15")  `  
 
 
 ## Where do I find more?
