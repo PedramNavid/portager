@@ -1,141 +1,124 @@
 ---
 title: "Visualizing Data"
 author: "Pedram Navid"
-date: "August 5, 2016"
+date: "August 14, 2016"
 output:
-  pdf_document: default
-  html_document: default
+  ioslides_presentation: 
+    fig_height: 3
+    fig_width: 5
+    widescreen: yes
+    smaller: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
-## Overview
+# Overview
 
-Visualizing data is where you'll find the most bang for your R-buck and so I've
-decided to start there rather than with the more mundane, tedious, and frankly
-boring tasks of importing and cleaning data.
+## Why Viz First?
 
-That's not to say that those tasks aren't important, but hopefully by starting
-with the fun stuff, I'll win you over, and once it's time to discuss importing
-Excel files and doing data quality checks you'll stick around.
+Philosophy: start with the stuff you'll want
 
-There's more than one way to skin a cat with visualization (sorry #rcatladies):
-there's base R graphics, lattice, ggplot2 and others. In line with this course's
-philosophy we'll be using ggplot2, which is part of the *tidyverse* of packages
-(these are packages that work well together and share a common philosophy) mostly
-authored by Hadley Wickham. Other packages in the tidyverse include dplyr and 
-tidyr, and we'll be using those frequently as well. 
+> - so you'll stick around for the stuff you hate.
 
 ## Visual Exploration of Data
 
-### qplot
+- Most important part of data exploration
+- Ability to see trends and relationships is unmatched by any statistical summary
+- One of the most important methods of communication 
+- Analysis often hinges on proper visual exploration
 
-**ggplot2** has two main functions: **qplot** and **ggplot**. **qplot** is great
-for initial data exploration to quickly see trends, distributions, and outliers
-without focusing too much on visual presentation. *ggplot* is used once you'd
-like to refine the visual display of data for sharing with others. 
+## Plotting Packages in R
+
+- Lots of packages: base, lattice, ggplot2, others..
+- In keeping with the philosophy of this tutorial, we will focus on ggplot2
+- Two main functions: `ggplot()` and `qplot()`
 
 ```{r}
-# mtcars was extracted from the 1974 Motor Trend US magazine, and comprises
-# fuel consumption and 10 aspects of automobile design and performance for 
-# 32 automobiles (1973–74 models).
+# Install if you haven't
+# install.packages('ggplot2')
 library(ggplot2)
-head(mtcars)
-
-# What's the distribution of hp look like
-qplot(data=mtcars, hp) 
-
-# Shrink the bins down to 25-hp increments
-qplot(data=mtcars, hp, binwidth=25)
-
-# What's the relationship between mileage and horsepower?
-qplot(data=mtcars, mpg, hp)
-
-# Is there a difference in that relationship when looking at automatic (0) or manual (1)?
-qplot(data=mtcars, mpg, hp, colour = am)
 ```
 
-Notice that ggplot thinks that the variable **am** that describes whether
-a car is automatic or manual is a continous variable, when it is actually
-categorical? Let's fix that by converting **am** into a factor:
+# qplot()
 
-```{r}
-qplot(data=mtcars, mpg, hp, color = factor(am))
+## qplot: fast plotting
+
+- qplot gives you fast plotting, at the expensive of customizability
+- great for throwing ideas out quickly and exploring new possibilities
+
+```{r, message = F, warning = F}
+library(MASS)
+
+# Histogram is default for one variable
+qplot(Claims, data = Insurance)
 ```
 
-There we go. Now it's clear that **am** is a categorical variable. 
+## 
 
 ```{r}
-# Break out the plots further by number of gears.
-qplot(data=mtcars, mpg, hp, color = factor(am), facets = ~ gear)
+# Scatterplot is default for two variables
+qplot(Holders, Claims, data = Insurance)
 ```
 
-## ggplot
+Basic format: `qplot(x, y, data = Your_Dataset)`
 
-qplot is *okay* but it's not well suited for analysis that will be shared, and if
-analysis isn't being shared, then it's not very useful. 
-
-ggplot is the stronger, beefier cousin of qplot. Let's start with a simple chart
-and beef it up step by step.
+## qplot: expanded
 
 ```{r}
-# This data set gives the measurements in cms of the variables sepal length 
-# and width and petal length and width, respectively, for 50 flowers from each 
-# of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
-
-summary(iris)
-
-# Our first attempt at plotting Sepal Length
-ggplot(data = iris, aes(x = Sepal.Length)) + 
-  geom_histogram()
-
-# Now let's fix the bins of the histogram
-ggplot(data = iris, aes(x = Sepal.Length)) + 
-  geom_histogram(binwidth=0.5)
-
-# Let's add some labels
-ggplot(data = iris, aes(x = Sepal.Length)) + 
-  geom_histogram(binwidth=0.5) + 
-  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
-         title = "Distribution of Sepal Length")
-
-# Let's break it out by species
-ggplot(data = iris, aes(x = Sepal.Length)) + 
-  geom_histogram(binwidth=0.5) + 
-  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
-         title = "Distribution of Sepal Length") + 
-  facet_wrap(~ Species)
-
-# Maybe one column will be easier to visualize
-ggplot(data = iris, aes(x = Sepal.Length)) + 
-  geom_histogram(binwidth=0.5) + 
-  labs(x = "Sepal Length (cm)", y = "Count of Observations", 
-         title = "Distribution of Sepal Length") + 
-  facet_wrap(~ Species, ncol = 1)
-
+# Add 3rd variable to aesthethics such as colour, size, fill
+qplot(Holders, Claims, colour = Age, data = Insurance)
 ```
 
-Normally, you wouldn't code like I did above, and I won't do that again, but 
-I wanted to show the progression of a simple plot to more and more complex as 
-you start to formula what it is you might want to look at. 
-
-It's good practice to always plot the data. Plot the data in as many different 
-ways as you can to find interesting outcomes. You won't necessarily show every
-attempt (in fact, you'll probably show 1% of what you actually do), but it's
-import to explore to better understand what the data might be telling you.
-
-Let's continue but with two variables
+## 
 
 ```{r}
-ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width)) +
+# Don't ever do this, it's very hard to interpret
+qplot(Group, Claims, size = Holders, colour = Age, data = Insurance)
+```
+
+## qplot: facets
+
+```{r}
+# Facet breaks up a plot by a group.
+qplot(Claims, facets = ~ Age, data = Insurance)
+```
+
+facets use the `formula` syntax: `~ a` for a single group or `a ~ b` for 2 groups
+
+##
+```{r}
+qplot(Holders, Claims, facets = Group ~ Age, data = Insurance)
+```
+
+# ggplot()
+
+## ggplot primer
+
+Syntax is confusing at first.
+
+```{r}
+ggplot(data=Cars93, aes(x = Horsepower, y = MPG.city)) +
   geom_point()
-
-# Odd, there's two distinct clusters. What's going on here?
-ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width)) +
-  geom_point(aes(colour = Species))
-
-# Well that was easy. 
 ```
 
+Basic format is:  
+`ggplot(data=YourDataSet, aes(x = IndVariable, y = DepVariable)) +
+geom_XXXX()`
+
+## aesthethics
+
+* aesthethics are something that the plot draws that varies with data 
+* examples: 
+  + location of a point
+  + size of a point, or line
+  + colour of a point or line
+  + fill of a bar, histogram
+*  use aes() to define them, either for the whole plot: `ggplot(data = bla, aes(x, y)) 
+* or for individual layers, if different layers have different aesthethics
+  + `geom_line(aes(date, value1, colour = group)) + `
+  `geom_line(aes(date, value2, colour = group))`
+
+
+# Your Turn
