@@ -1,44 +1,37 @@
-Installing R Packages
-========================================================
-author: Pedram Navid 
-autosize: true 
-pedram.navid@gmail.com  
-github.com/PedramNavid  
+---
+title: "Installing R Packages"
+author: "Pedram Navid"
+date: "August 14, 2016"
+output:
+  ioslides_presentation
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-What is a package?
-========================================================
+## What is a package? {.build}
 - New functions / features (e.g. tidyr, readxl)
 - Simplify existing functions / syntax (dplyr, ggplot2, lubridate)
 - Something you create! 
 - Officially maintained list: https://cran.r-project.org/web/packages/
 
-So....I install all of them?
-========================================================
+## So....I install all of them? {.smaller}
 No! (Not yet)
 
 - Start with a small set of recommended packages to become familiar with them
 - Better to know a few really well then a lot only superficially
 
-
-```r
+```{r, eval=FALSE}
 pkg <- c('dplyr', 'tidyr', 'ggplot2', 'readxl', 'stringr', 'lubridate')
 install.packages(pkg)
 ```
 
-prompt them!
-========================================================
-type:prompt
-
-hello whats up
-
-Load them!
-========================================================
+## Load them!
 - Can't use a package until you load it! 
 - Use library(pkgname) # No quotes! 
 
-
-```r
+```{r, eval=FALSE}
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -46,8 +39,7 @@ library(readxl)
 ```
 
 
-What do they do??
-========================================================
+## What do they do??
 * dplyr: introduces grammar of data manipulation.  
 *names(d)[names(d)=="beta"] <- "two"* vs. *rename(d, beta = two)*
 * tidyr: reshapes your data to make it tidy, work nice with other packages. 
@@ -58,7 +50,6 @@ What do they do??
 *ymd("2015-03-29") ; ymd("2015-Mar-29") ; dmy("29-March-15"); mdy("3-29-15")*
 
 
-Where do I find more?
-========================================================
+## Where do I find more?
 * The big list: https://cran.r-project.org/
 * A more focused list: https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages
