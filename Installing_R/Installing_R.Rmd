@@ -3,42 +3,33 @@ title: "Installing R"
 author: "Pedram Navid"
 date: "August 14, 2016"
 output: ioslides_presentation
+
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+
 ## A Briefer
+* R: Comes first. Install from: https://cran.r-project.org/
+* RStudio is next. Install from: https://www.rstudio.com/products/rstudio/download2/
 
-- R: Comes first. Install from: https://cran.r-project.org/
-- RStudio is next. Install from: https://www.rstudio.com/products/rstudio/download2/
-
-- Installation is straight-forward enough. Defaults are fine. For corporate
+Installation is straight-forward enough. Defaults are fine. For corporate
 environments, you may want to make a few changes.
 
 ## Organize your life
+Or at least your project folders. Here's how I do it:  
 
-- Or at least your project folders. Here's how I do it:  
-
-- Base folder for all my work: **Documents\R\workspace**
-- In each folder, I create a subfolder for each project
-- A project could be one analysis or many, but in general should share a
+* Base folder for all my work: **Documents\R\workspace**
+* In each folder, I create a subfolder for each project
+* A project could be one analysis or many, but in general should share a
 common goal, maybe common data.
-- Within each project folder, separate code from raw data using additional
+* Within each project folder, separate code from raw data using additional
 folders. More details in the **Starting A Project** slide.
 
-<div class="notes">
-This is my *note*.
-
-- It can contain markdown
-- like this list
-
-</div>
-
-
-## Some Recommended Options {.smaller}
-<div class="columns-2">
+## Some Recommended Options{.small}
+<<div class="columns-2">
 ![R Options Screenshot](img/r_options.png)
 
 Change Options through Tools > Global Options.
