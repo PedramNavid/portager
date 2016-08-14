@@ -1,7 +1,10 @@
 Installing R Packages
 ========================================================
-author: Pedram Navid
-autosize: true
+author: Pedram Navid 
+autosize: true 
+pedram.navid@gmail.com  
+github.com/PedramNavid  
+
 
 What is a package?
 ========================================================
@@ -22,6 +25,12 @@ No! (Not yet)
 pkg <- c('dplyr', 'tidyr', 'ggplot2', 'readxl', 'stringr', 'lubridate')
 install.packages(pkg)
 ```
+
+prompt them!
+========================================================
+type:prompt
+
+hello whats up
 
 Load them!
 ========================================================
