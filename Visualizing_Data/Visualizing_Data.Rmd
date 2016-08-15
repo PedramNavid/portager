@@ -107,18 +107,174 @@ Basic format is:
 `ggplot(data=YourDataSet, aes(x = IndVariable, y = DepVariable)) +
 geom_XXXX()`
 
+# ggplot: aesthethics
+
 ## aesthethics
 
 * aesthethics are something that the plot draws that varies with data 
 * examples: 
-  + location of a point
-  + size of a point, or line
-  + colour of a point or line
-  + fill of a bar, histogram
-*  use aes() to define them, either for the whole plot: `ggplot(data = bla, aes(x, y)) 
+    + colour of a point or line
+    + size of a point, or line
+    + fill of a bar, histogram
+    + shape of a point
+*  use aes() to define them, either for the whole plot: `ggplot(data = bla, aes(x, y))`
 * or for individual layers, if different layers have different aesthethics
-  + `geom_line(aes(date, value1, colour = group)) + `
+    + `geom_line(aes(date, value1, colour = group)) + `  
   `geom_line(aes(date, value2, colour = group))`
 
+# ggplot: aesthethics -- examples
+
+## Colour
+```{r}
+# Position (required) + discrete colour aesthethic 
+ggplot(data=Cars93, aes(x = Horsepower, y = MPG.city, colour = Origin)) +
+  geom_point()
+```
+
+# Continous colour
+```{r}
+ggplot(data=Cars93, aes(Horsepower, MPG.city, colour = Weight)) + 
+  geom_point()
+```
+
+## Size
+```{r}
+ggplot(data=Cars93, aes(Horsepower, MPG.city, size = Weight)) + 
+  geom_point()
+```
+
+## Fill (histograms)
+```{r}
+ggplot(data=Cars93, aes(Horsepower, fill = Origin)) +
+  geom_histogram(binwidth = 10)
+```
+
+## Fill (bars)
+```{r}
+ggplot(data=Cars93, aes(Type, fill = DriveTrain)) + 
+  geom_bar()
+```
+
+## Shape
+```{r}
+# Not as useful as colour
+ggplot(data=Cars93, aes(Horsepower, Weight, shape = Type)) +
+  geom_point()
+```
+
+## Size
+```{r}
+# Size aesthethic
+ggplot(data=Cars93, aes(Horsepower, Price, size = EngineSize)) + 
+  geom_point()
+```
+
+## Alpha
+```{r}
+# You can combine multiple aesthethics for multi-dimensional data
+# Careful, as 4 dimensions becomes very hard for others to interpret
+ggplot(data=Cars93, aes(Horsepower, MPG.city, alpha = Weight, colour = Type)) +
+  geom_point()
+```
+
+# ggplot: geoms
+
+## Overview of geoms
+
+A geom is a thing that ggplot draws based on data. It will manipulate the data
+in some way (sometimes) and then draw it on a plot. 
+
+The ggplot2 cheatsheet is really helpful here: https://www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf
+
+# ggplot geoms: 1 variable (continous)
+
+## histogram
+
+```{r, message=TRUE}
+# If you don't provide bins, ggplot2 will (rightly) complain
+ggplot(Cars93, aes(Horsepower)) + 
+  geom_histogram()
+```
+
+## with bins
+```{r, message=TRUE}
+ggplot(Cars93, aes(Horsepower)) + 
+  geom_histogram(binwidth=20)
+```
+
+## freqpoly
+```{r}
+ggplot(Cars93, aes(MPG.city)) +
+  geom_freqpoly(binwidth=10)
+```
+
+# ggplot geoms: 1 variable (discrete)
+
+## bar charts
+
+```{r} 
+ggplot(Cars93, aes(Type)) +
+  geom_bar()
+```
+
+## bar chart -- weighted
+```{r}
+ggplot(housing, aes(Type, weight = Freq)) +
+  geom_bar()
+```
+
+## bar chart - identity
+```{r}
+ggplot(Cars93[1:5,], aes(Make, Horsepower)) + 
+  geom_bar(stat="identity")
+```
+
+# ggplot geoms: 2 variables
+
+## point / scatterplot
+```{r}
+ggplot(Cars93, aes(EngineSize, Cylinders)) + 
+  geom_point()
+```
+
+## jitter
+```{r}
+ggplot(Cars93, aes(EngineSize, Cylinders)) + 
+  geom_jitter()
+```
+
+## boxplot
+
+```{r}
+ggplot(Cars93, aes(Type, Horsepower)) + 
+  geom_boxplot()
+```
+
+## line
+```{r}
+ggplot(economics, aes(date, pop)) + 
+  geom_line()
+```
+
+## multiple lines
+```{r}
+ggplot(economics) + 
+  geom_line(aes(date, psavert, color = "Personal Savings Rate")) + 
+  geom_line(aes(date, uempmed, color = "Unemployment Rate"))
+```
+
+## smoothing/regression lines
+```{r}
+ggplot(Cars93, aes(MPG.city, Horsepower)) + 
+  geom_point() +
+  geom_smooth()
+```
+
+## linear lines, without standard error
+```{r}
+ggplot(Cars93, aes(MPG.city, Horsepower)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=FALSE)
+```
 
 # Your Turn
