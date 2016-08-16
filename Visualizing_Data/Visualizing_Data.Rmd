@@ -186,6 +186,11 @@ in some way (sometimes) and then draw it on a plot.
 
 The ggplot2 cheatsheet is really helpful here: https://www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf
 
+## transformations
+
+geoms may transform your data under the hood as needed. 
+![geom_stat](http://r4ds.had.co.nz/images/visualization-stat-bar.png)
+
 # ggplot geoms: 1 variable (continous)
 
 ## histogram
@@ -217,6 +222,8 @@ ggplot(Cars93, aes(Type)) +
   geom_bar()
 ```
 
+# ggplot geoms: 2 variables 
+
 ## bar chart -- weighted
 ```{r}
 ggplot(housing, aes(Type, weight = Freq)) +
@@ -228,8 +235,6 @@ ggplot(housing, aes(Type, weight = Freq)) +
 ggplot(Cars93[1:5,], aes(Make, Horsepower)) + 
   geom_bar(stat="identity")
 ```
-
-# ggplot geoms: 2 variables
 
 ## point / scatterplot
 ```{r}
@@ -275,6 +280,48 @@ ggplot(Cars93, aes(MPG.city, Horsepower)) +
 ggplot(Cars93, aes(MPG.city, Horsepower)) + 
   geom_point() + 
   geom_smooth(method="lm", se=FALSE)
+```
+
+## combining geoms
+```{r}
+ggplot(Cars93, aes(MPG.city, MPG.highway)) + 
+  geom_point() + 
+  geom_line(linetype = 'dashed')
+```
+
+## and a complicated exmaple
+
+```{r}
+mean_mpg <- mean(Cars93$MPG.city)
+ggplot(Cars93, aes(EngineSize, MPG.city)) + 
+  geom_point() + 
+  geom_abline(slope = -5, intercept = 40, color = "red") +
+  geom_hline(aes(yintercept = mean_mpg), linetype = "dashed")
+```
+
+# ggplot - facets
+
+## facet_wrap
+```{r}
+ggplot(Cars93, aes(Horsepower)) + 
+  geom_histogram() +
+  facet_wrap(~ DriveTrain)
+```
+
+## facet_wrap - extended
+
+```{r}
+ggplot(Cars93, aes(Horsepower)) + 
+  geom_histogram() +
+  facet_wrap(~ DriveTrain, ncol = 1)
+```
+
+## facet_grid 
+
+```{r}
+ggplot(Cars93, aes(Price, Weight)) + 
+  geom_point(aes(color = Man.trans.avail)) +
+  facet_grid(Origin ~ DriveTrain)
 ```
 
 # Your Turn
