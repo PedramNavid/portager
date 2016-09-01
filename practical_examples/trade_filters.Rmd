@@ -5,29 +5,10 @@ From David Doherty: https://connect.fg.rbc.com/message/587342#587342
 
 Another work example:
  
- 
 You have a massive table of data in Excel, and you want to do processing on a
-subset of that info.
-Normally I would autofilter the table and then select the data I'm interested in,
-the view changes to only show that information,.
+subset of that info. Normally I would autofilter the table and then select the 
+data I'm interested in, the view changes to only show that information. 
 
-
-These are trade types for structured trades. I want to tag each of these trades 
-with their characteristics. So where I see HICP in the Type column, I will tag 
-it with 'Inflation', where I see 'CAP'\'FLOOR'\'CapFloor'\'Cap_Floor' I want to
-tag it with 'CapFloor'. Where I see 'swap'/'SWAP'/'IRSwap' I want to tag it with 
-'Swap'
-
-
-This kind of stuff is very hard to do in Excel
-After I've tagged the info I want to generate some rudimentary graphs, 
-e.g. show me all the trades in the book categorised by:
-
-
-trades that are not swaps of any kind
-trades that are swaps, but not tagged with anything else
-trades that are swap, but also have other characteristics 
-(e.g. a trade that is a 'Swap' and also 'Inflation')
 
 # Get the data ready
 
@@ -35,10 +16,11 @@ We'll create some fake data based on the example provided. Here we pick a random
 sample from a list of currencies and aliases and create a dataset with 100 
 observations
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(dplyr)
 library(ggplot2)
 library(stringr)
+library(knitr)
 
 # Set the seed so we get the same result every time
 set.seed(1234)
@@ -59,21 +41,38 @@ head(dataset)
 ```
 
 
-# Let's tag based on the alias. First we will convert everything to uppercase
-# to make it easier to search for variation in capitalization 
+# Manipulate the data 
+
+Let's tag based on the alias. First we will convert everything to uppercase
+to make it easier to search for variation in capitalization 
+
+```{r}
+
 dataset_tag <- dataset %>%
-  mutate(alias = str_to_upper(alias), 
-    cap = str_detect(alias, 'CAPFLOOR'),
+  mutate(alias = str_to_upper(alias),  # Convert to upper
+    cap = str_detect(alias, 'CAPFLOOR'), # add tags to new variables
     swap = str_detect(alias, 'SWAP'),
     inf = str_detect(alias, 'INFLATION'),
     spr = str_detect(alias, 'SPREAD'),
-    tag_count = cap + swap + inf + spr
+    tag_count = cap + swap + inf + spr # Count the number of 'hits'
   )
 
 head(dataset_tag)
+```
+
 
 # Easy filters
+```{r}
 filter(dataset_tag, cap == TRUE, currency == "USD")
-filter(dataset_tag, cap, currency == "USD") # Equivalent
 
-filter(dataset_tag, !swap, currency == "JPY")
+filter(dataset_tag, cap, currency == "USD") # Equivalent 
+
+filter(dataset_tag, !swap, currency == "JPY") %>%
+  head()
+
+filter(dataset_tag, swap, tag_count > 1) %>%
+  head() %>%
+  kable()
+
+
+```

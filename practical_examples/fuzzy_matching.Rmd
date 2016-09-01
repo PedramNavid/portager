@@ -1,0 +1,172 @@
+---
+title: "Fuzzy Matching"
+author: "Pedram Roshdinavid"
+date: "August 30, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "../")
+```
+
+From David Doherty: https://connect.fg.rbc.com/message/587343#587343
+
+I have a database of athletes for triathlons with all their results stored in 
+them covering the last few years I will get lists of athletes for future events
+and I want to cross compare them,
+however some of the fields are not normalised
+
+E.g. the names may not be expressed the same way 'John Smith' may be 'Smith, John'
+or 'John J. Smith'. I want to employ fuzzy matching to cross compare them. 
+In Excel this is horrific as I have to find and install an add-in and then once 
+I email the sheet to someone, either the sheet doesn't work or they have to also 
+install the add-in
+
+There are additional helper columns to avoid mistmatches: e.g. you can identify
+their age group; and; in previous results you are given their home town and country,
+and in the future list you are given their state.
+
+Once I've managed to cross-compare the results I want to run stuff like:
+For everyone aged 25-29 in an upcoming event, show me their results where available, 
+and order them by finishing time From the data below you should be able to see that 
+'Tom Aaker' is doing an upcoming race, and this is the same guy that is listed as 'Thomas Aaker' in a previous result.
+
+Eventually after that you may want to run additional more advanced analytics:
+Normalise results for difficulty (e.g. by using the winners time as a scaling
+mechanism for previous results)
+Run simulations to figure out if athletes perform comparitively better on 
+certain types of courses
+ 
+Example data, results from previous races:
+ 
+   
+Name	State	Country	Gender	Division	Overall
+Alicia Kaye	Clermont	USA	Female	FPRO	4:27:39
+Ryan Ung	Los Angeles	USA	Male	M25-29	4:30:40
+Lauren Barnett	Plano	USA	Female	FPRO	4:31:00
+Aaron Church	South Riding	USA	Male	M40-44	4:31:43
+Anthony Chan	Flushing	USA	Male	M18-24	4:35:03
+Dan Stephens	Boise	USA	Male	M50-54	4:35:16
+Thomas Aaker	San Francisco	USA	Male	M25-29	4:36:57
+Jacob Slife	West Point	USA	Male	M18-24	4:37:43
+Matt Smith	Denver	USA	Male	M35-39	4:38:07
+Bill Picciano	Jupiter	USA	Male	M45-49	4:39:50
+Steve Chaid	Wien	USA	Male	M45-49	4:39:58
+   
+ 
+Example for name for upcoming races
+ 
+   
+Name	Age group	State
+Tom Aaker	M25-29	CA
+James Aaron	M35-39	AL
+Dave Abel	M45-49	DC
+Robert Abernathy	M45-49	GA
+Richard Abrahamson	M35-39	MN
+Sidney Abramson	M25-29	KY
+Filip Achten	M30-34	NY
+Luis Acuna	M30-34	IL
+Elizabeth Acuna	F30-34	IL
+Jennifer Adamo	F40-44	IN
+
+# Fuzzy Matching
+
+This might be the more difficult part of this job, but not impossible. 
+First, let's import some data from the web
+
+```{r, message = F}
+library(readxl)
+tri <- read_excel("practical_examples/itu-world-triathlon-series-male.xls")
+head(tri)
+```
+
+Now, let's create a full name field 
+
+```{r}
+tri <- tri %>%
+  mutate(full_name = paste(`First Name`, `Last Name`))
+
+head(tri[,c(4,5,17)])
+
+```
+
+Now let's create a fake name and see if we can match it
+
+```{r}
+fns <- c('Mario Molla', "Molla, Mario", "Mola, Mario", "Mario Mola Jr.", "Catherine Great", "John Travolta")
+rn <- 'Mario Mola'
+
+library(stringdist)
+stringdist(fns, rn) # Default method
+stringdist(fns, rn, method = 'qgram') # Seems to work better for our examples
+
+```
+
+Now that we have a method, let's create a name and find the best match in our 
+dataset
+```{r}
+
+m <- stringdist('Pedram Navid', tri$full_name, method = 'qgram')
+m
+min(m)
+# Best match is a 8. Let's find it
+which.min(m) 
+
+# 96th one! 
+tri$full_name[96]
+
+# Not very close. Let's try another name
+m <- stringdist('Greg Billington', tri$full_name, 'qgram')
+min(m)
+which.min(m) 
+tri$full_name[49]
+
+# Pretty good! So, what threshold do we use?
+methods <- c('osa', 'lv', 'dl', 'hamming' , 'lcs', 'qgram', 'cosine', 'jaccard', 'jw')
+for(i in methods) {
+  m <- stringdist('Billington, Greg', tri$full_name, method =  i)
+  print(paste("Method:", i, tri$full_name[which.min(m)]))
+}
+
+# make a function to find the best method for a given name
+
+find_best <- function(name) {
+  methods <- c('osa', 'lv', 'dl', 'hamming' , 'lcs', 'qgram', 'cosine', 'jaccard', 'jw')
+  for(i in methods) {
+    m <- stringdist(name, tri$full_name, method =  i)
+    cat(paste0(i, "\t  ", tri$full_name[which.min(m)], "\t", round(min(m), 2)))
+    cat('\n')
+  }
+}
+find_best("Sissons Jr., Ryan")
+find_best("Donald Alfredon")
+find_best("Aron Roile")
+find_best("Matt Sharpe")
+
+```
+
+
+# Analysis of results 
+For everyone aged 25-29 in an upcoming event, show me their results where available, and order them by finishing time
+
+```{r}
+# create approx. age column and get rid of unneeded columns
+tri_small <- tri %>%
+  mutate(age = 2016 - YOB) %>%
+  select(rank = Ranking, full_name, country = Country, age, events = `Total Events`,
+    wcups = `World Cups`, points = Points, best_score = `Current Best Score`)
+head(tri_small)
+
+tri_small %>%
+  filter(age>=25, age<=29) %>%
+  top_n(5, best_score)
+
+tri_small %>%
+  filter(age>=35) %>%
+  top_n(5, points)
+
+ggplot(tri_small, aes(age, best_score, color = events)) +
+  geom_point() + 
+  geom_smooth()
+  
