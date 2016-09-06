@@ -1,0 +1,56 @@
+---
+title: "Communicating Data"
+author: "Pedram Navid"
+date: "September 01, 2016"
+output:
+  ioslides_presentation: 
+    fig_height: 3
+    fig_width: 5
+    widescreen: yes
+    smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Communicating Data
+
+## Stages of a data science project
+![Stages of a Data Science Project](img/ds-stages.jpg)
+
+<div class="notes">
+[ask]: What is the most important role in a data science project? [ask]
+[answer]: Project sponsor: represents the business interests. 
+</div>
+
+Without communication, it's useless. 
+
+## Communication principles
+
+- Presentation to sponsor/stakeholders
+- Documentation of model for operations
+- Different audiences require different communication outputs
+
+## Reproducible Research
+
+- Option 1: manually create all artefacts
+- Option 2: produce as much as possible through R using knitr/markdown
+
+## Option 2: The Better Way
+
+*R Markdown* 
+
+This presentation was created in R using Markdown.
+Here's the code used to generate it
+
+![Presentation code](img/pres_code.PNG)
+
+Prefer minimal text to generate clean, readable output
+
+## Notebooks
+
+In addition to presentations, you can create entire notebooks that
+capture the research process.
+
+
