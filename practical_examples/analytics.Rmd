@@ -19,7 +19,6 @@ library(readxl)
 analytics <- read_excel("practical_examples/analytics.xls", sheet = 3, skip = 4)
 colnames(analytics) <- c('browser', 'version', 'os', 'sessions')
 head(analytics)
-
 ```
 
 ## Analysis
@@ -65,4 +64,16 @@ analytics %>%
   summarise(sessions = sum(sessions)) %>%
   arrange(desc(sessions))
 ```
+```{r plot}
+library(ggplot2)
+library(ggthemes)
+library(scales)
+head(result)
+ggplot(result, aes(reorder(browser, -sessions), weight = sessions))  +
+  geom_bar() +
+  labs(x = "Internet Browser", y = "# of Sessions") +
+  scale_y_continuous(labels = comma) + 
+  theme_hc()
+ 
 
+```

@@ -51,6 +51,39 @@ Prefer minimal text to generate clean, readable output
 ## Notebooks
 
 In addition to presentations, you can create entire notebooks that
-capture the research process.
+capture the research process. 
 
+Notebooks contain both markdown and results from R Code
+
+## Markdown
+![Rmarkdown Flow](img/RMarkdownFlow.png)
+
+Help > Markdown Quick Reference
+
+## Code Chunks
+
+You can quickly insert chunks like these into your file with the keyboard 
+shortcut Ctrl + Alt + I, the Add Chunk  command in the editor toolbar
+or by typing the chunk delimiters \`\`\` {r} and \`\`\`.
+
+When you render your .Rmd file, R Markdown will run each code chunk and embed 
+the results beneath the code chunk in your final report.
+
+```{r}
+# This is an example code chunk
+print(sqrt(2))
+```
+
+## Theory
+
+*Options*
+
+1. Use Markdown for the entire project, for peer/self-documentation, OR
+2. Use Markdown for communicating the results and findings of a project to a 
+broader audience, OR
+3. BOTH!
+
+## Examples 
+
+analytics.rmd
 
