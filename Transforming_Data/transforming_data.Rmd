@@ -129,7 +129,7 @@ parking <- read.csv("Transforming_Data/data/parking_data.csv") %>%
 parking
 ```
 
-# dplyr: select
+## dplyr: select
 
 Pick columns, and optionally rename and reorder them
 
@@ -165,7 +165,7 @@ parking %>%
   head()
 ```
 
-# Dplyr: Filter
+## Dplyr: Filter
 
 Subset data using logic
 
@@ -222,6 +222,8 @@ parking %>%
 
 # Mutate: make new variables
 
+## 
+
 ```{r}
 library(stringr)
 parking %>% 
@@ -274,6 +276,8 @@ parking %>%
 
 # joins
 
+## inner joins
+
 ```{r}
 prov_names <- data.frame(province = c('AB', 'BC', 'MB', 'NB', 'NL', 'NS', 
   'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'), 
@@ -286,8 +290,17 @@ small_parking <- parking %>%
 
 inner_join(small_parking, prov_names) %>%
   filter(province %in% c('NS', 'NY'))
+```
+
+## left/right joins
+
+```{r}
 left_join(small_parking, prov_names) %>%
   filter(province %in% c('NS', 'NY'))
+```
+
+## anti joins
+```{r}
 anti_join(small_parking, prov_names)
 
 ```

@@ -422,7 +422,7 @@ parking</pre>
 ## #   time_of_infraction &lt;int&gt;, location1 &lt;fctr&gt;, location2 &lt;fctr&gt;,
 ## #   location3 &lt;fctr&gt;, location4 &lt;fctr&gt;, province &lt;fctr&gt;</pre>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>dplyr: select</h2></hgroup><article  id="dplyr-select" class="smaller ">
+</article></slide><slide class=''><hgroup><h2>dplyr: select</h2></hgroup><article  id="dplyr-select" class="smaller ">
 
 <p>Pick columns, and optionally rename and reorder them</p>
 
@@ -493,7 +493,7 @@ parking %&gt;%
 ## # ... with 4 more variables: infraction_description &lt;fctr&gt;,
 ## #   set_fine_amount &lt;int&gt;, time_of_infraction &lt;int&gt;, province &lt;fctr&gt;</pre>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Dplyr: Filter</h2></hgroup><article  id="dplyr-filter" class="smaller ">
+</article></slide><slide class=''><hgroup><h2>Dplyr: Filter</h2></hgroup><article  id="dplyr-filter" class="smaller ">
 
 <p>Subset data using logic</p>
 
@@ -666,6 +666,8 @@ parking %&gt;%
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Mutate: make new variables</h2></hgroup><article  id="mutate-make-new-variables" class="smaller ">
 
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4" class="smaller ">
+
 <pre class = 'prettyprint lang-r'>library(stringr)
 parking %&gt;% 
   select(2:8, -infraction_code) %&gt;%
@@ -792,6 +794,8 @@ parking %&gt;%
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>joins</h2></hgroup><article  id="joins" class="smaller ">
 
+</article></slide><slide class=''><hgroup><h2>inner joins</h2></hgroup><article  id="inner-joins" class="smaller ">
+
 <pre class = 'prettyprint lang-r'>prov_names &lt;- data.frame(province = c(&#39;AB&#39;, &#39;BC&#39;, &#39;MB&#39;, &#39;NB&#39;, &#39;NL&#39;, &#39;NS&#39;, 
   &#39;NT&#39;, &#39;NU&#39;, &#39;ON&#39;, &#39;PE&#39;, &#39;QC&#39;, &#39;SK&#39;, &#39;YT&#39;), 
   long_name = c(&#39;Alberta&#39;, &#39;British Columbia&#39;, &#39;Manitoba&#39;, &#39;New Brunswick&#39;, &#39;Newfoundland&#39;,
@@ -822,6 +826,8 @@ inner_join(small_parking, prov_names) %&gt;%
 ## 10       NS      7 VIRTUE ST              30 Nova Scotia
 ## # ... with 542 more rows</pre>
 
+</article></slide><slide class=''><hgroup><h2>left/right joins</h2></hgroup><article  id="leftright-joins" class="smaller ">
+
 <pre class = 'prettyprint lang-r'>left_join(small_parking, prov_names) %&gt;%
   filter(province %in% c(&#39;NS&#39;, &#39;NY&#39;))</pre>
 
@@ -843,21 +849,23 @@ inner_join(small_parking, prov_names) %&gt;%
 ## 10       NY 31 HELENDALE AVE              30          NA
 ## # ... with 1,371 more rows</pre>
 
+</article></slide><slide class=''><hgroup><h2>anti joins</h2></hgroup><article  id="anti-joins" class="smaller ">
+
 <pre class = 'prettyprint lang-r'>anti_join(small_parking, prov_names)</pre>
 
 <pre >## # A tibble: 4,815 x 3
-##    province       location2 set_fine_amount
-##      &lt;fctr&gt;          &lt;fctr&gt;           &lt;int&gt;
-## 1        IL  361 QUEEN ST W              30
-## 2        IL 1842 QUEEN ST E              30
-## 3        IL    55 WALES AVE              30
-## 4        IL   119 OXFORD ST              30
-## 5        IL  16 DAMASCUS DR              90
-## 6        IL  100 MC CAUL ST              60
-## 7        IL  321 BLOOR ST W              40
-## 8        IL   31 BRITAIN ST              40
-## 9        IL  438 QUEEN ST W              30
-## 10       IL  436 QUEEN ST W             150
+##    province           location2 set_fine_amount
+##      &lt;fctr&gt;              &lt;fctr&gt;           &lt;int&gt;
+## 1        DE      531 CLINTON ST              30
+## 2        DE 270 WELLINGTON ST W              60
+## 3        DE       60 GRANGE AVE              30
+## 4        DE    2075 BAYVIEW AVE              30
+## 5        DE      2464 WESTON RD              30
+## 6        DE          FRONT ST E             150
+## 7        DE          BLOOR ST W              40
+## 8        DE       76 SOUDAN AVE              40
+## 9        UT           17 ELM ST              30
+## 10       UT     825 COXWELL AVE              30
 ## # ... with 4,805 more rows</pre></article></slide>
 
 
