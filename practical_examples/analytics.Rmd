@@ -1,0 +1,68 @@
+---
+title: "Google Analytics"
+author: "Pedram Roshdinavid"
+date: "September 6, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+ROOT_DIR = rprojroot::find_rstudio_root_file()
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = ROOT_DIR)
+```
+
+## Import File
+
+```{r}
+library(readxl)
+
+analytics <- read_excel("practical_examples/analytics.xls", sheet = 3, skip = 4)
+colnames(analytics) <- c('browser', 'version', 'os', 'sessions')
+head(analytics)
+
+```
+
+## Analysis
+
+```{r}
+library(dplyr)
+
+# Count by Browser
+browser_summary <- analytics %>% 
+  group_by(browser) %>%
+  summarise(sessions = sum(sessions)) 
+head(browser_summary)
+
+# Sort by sessions
+browser_sort <- browser_summary %>%
+  arrange(desc(sessions))
+head(browser_sort)
+
+# Top 10 
+top_n(browser_sort, 10, sessions)
+
+# % of totals
+browser_percent <- browser_sort %>%
+  mutate(session_weight = sessions / sum(sessions))
+head(browser_percent)
+
+# Filter by >1%
+browser_filter <- browser_percent %>% 
+  filter(session_weight > 0.01)
+head(browser_filter)
+
+# Put it all together
+result <- analytics %>%
+  group_by(browser) %>%
+  summarise(sessions = sum(sessions)) %>%
+  arrange(desc(sessions)) %>%
+  mutate(session_weight = sessions / sum(sessions)) %>%
+  filter(session_weight > 0.01)
+result
+
+analytics %>%
+  group_by(browser, os) %>% 
+  summarise(sessions = sum(sessions)) %>%
+  arrange(desc(sessions))
+```
+

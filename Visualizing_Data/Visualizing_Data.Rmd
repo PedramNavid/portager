@@ -2,12 +2,13 @@
 title: "Visualizing Data"
 author: "Pedram Navid"
 date: "August 14, 2016"
+fontsize: 8pt
 output:
-  ioslides_presentation: 
+  ioslides_presentation:
     fig_height: 3
     fig_width: 5
+    smaller: yes
     widescreen: yes
-    smaller: true
 ---
 
 ```{r setup, include=FALSE}
@@ -189,7 +190,6 @@ The ggplot2 cheatsheet is really helpful here: https://www.rstudio.com/wp-conten
 ## transformations
 
 geoms may transform your data under the hood as needed. 
-![geom_stat](http://r4ds.had.co.nz/images/visualization-stat-bar.png)
 
 # ggplot geoms: 1 variable (continous)
 
