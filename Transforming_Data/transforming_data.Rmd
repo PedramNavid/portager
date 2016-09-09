@@ -3,11 +3,12 @@ title: "Transforming Data"
 author: "Pedram Navid"
 date: "September 01, 2016"
 output:
-  ioslides_presentation: 
+  beamer_presentation: default
+  ioslides_presentation:
     fig_height: 3
     fig_width: 5
+    smaller: yes
     widescreen: yes
-    smaller: true
 ---
 
 ```{r setup, include=FALSE}
