@@ -1,7 +1,7 @@
 ---
 title: "Visualizing Data"
 author: "Pedram Navid"
-date: "August 14, 2016"
+date: "September 09, 2016"
 fontsize: 8pt
 output:
   ioslides_presentation:

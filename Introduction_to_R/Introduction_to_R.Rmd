@@ -1,15 +1,19 @@
 ---
 title: "Introduction to R"
 author: "Pedram Navid"
-date: "August 14, 2016"
+date: "September 09, 2016"
+fontsize: 8pt
 output:
-  ioslides_presentation: 
-    fig_caption: no
-    widescreen: true
+  ioslides_presentation:
+    fig_height: 3
+    fig_width: 5
+    widescreen: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+PROJ_ROOT <- rprojroot::find_rstudio_root_file()
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = PROJ_ROOT)
 ```
 
 

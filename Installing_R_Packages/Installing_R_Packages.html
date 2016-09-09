@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2016-08-14" />
+  <meta name="date" content="2016-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -76,12 +76,11 @@
   </style>
 
 
-
 </head>
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -89,11 +88,11 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">August 14, 2016</p>
+            <p style="margin-top: 6px; margin-left: -2px;">September 09, 2016</p>
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>What is a package?</h2></hgroup><article  id="what-is-a-package" class="build">
+<slide class=''><hgroup><h2>What is a package?</h2></hgroup><article  id="what-is-a-package" class="smaller build">
 
 <ul>
 <li>New functions / features (e.g. tidyr, readxl)</li>
@@ -102,7 +101,7 @@
 <li>Officially maintained list: <a href='https://cran.r-project.org/web/packages/' title=''>https://cran.r-project.org/web/packages/</a></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>So&#8230;.I install all of them?</h2></hgroup><article  id="so....i-install-all-of-them" class="smaller">
+</article></slide><slide class=''><hgroup><h2>So&#8230;.I install all of them?</h2></hgroup><article  id="so....i-install-all-of-them" class="smaller smaller">
 
 <p>No! (Not yet)</p>
 
@@ -114,7 +113,7 @@
 <pre class = 'prettyprint lang-r'>pkg &lt;- c(&#39;dplyr&#39;, &#39;tidyr&#39;, &#39;ggplot2&#39;, &#39;readxl&#39;, &#39;stringr&#39;, &#39;lubridate&#39;)
 install.packages(pkg)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Load them!</h2></hgroup><article  id="load-them">
+</article></slide><slide class=''><hgroup><h2>Load them!</h2></hgroup><article  id="load-them" class="smaller ">
 
 <ul>
 <li>Can&#39;t use a package until you load it!</li>
@@ -126,7 +125,7 @@ library(ggplot2)
 library(tidyr)
 library(readxl)</pre>
 
-</article></slide><slide class=''><hgroup><h2>What do they do??</h2></hgroup><article  id="what-do-they-do">
+</article></slide><slide class=''><hgroup><h2>What do they do??</h2></hgroup><article  id="what-do-they-do" class="smaller ">
 
 <ul>
 <li>dplyr: introduces grammar of data manipulation.<br/><code>names(d)[names(d)==&quot;beta&quot;] &lt;- &quot;two&quot;</code> vs.<br/><code>rename(d, beta = two)</code></li>
@@ -137,7 +136,7 @@ library(readxl)</pre>
 <li>lubridate: easier manipulation of dates, consider:<br/><code>ymd(&quot;2015-03-29&quot;)</code><br/><code>ymd(&quot;2015-Mar-29&quot;)</code><br/><code>dmy(&quot;29-March-15&quot;)</code><br/><code>mdy(&quot;3-29-15&quot;)</code></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Where do I find more?</h2></hgroup><article  id="where-do-i-find-more">
+</article></slide><slide class=''><hgroup><h2>Where do I find more?</h2></hgroup><article  id="where-do-i-find-more" class="smaller ">
 
 <ul>
 <li>The big list: <a href='https://cran.r-project.org/' title=''>https://cran.r-project.org/</a></li>

@@ -1,9 +1,9 @@
 ---
 title: "Transforming Data"
 author: "Pedram Navid"
-date: "September 01, 2016"
+date: "September 09, 2016"
+fontsize: 8pt
 output:
-  beamer_presentation: default
   ioslides_presentation:
     fig_height: 3
     fig_width: 5
@@ -123,8 +123,7 @@ miss_muffet %>%
 ## dplyr: continued
 
 Best way to learn it is to use it....a lot.
-```{r, cache = TRUE}
-library(dplyr)
+```{r}
 parking <- read.csv("Transforming_Data/data/parking_data.csv") %>%
   tbl_df()
 parking

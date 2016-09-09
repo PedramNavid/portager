@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2016-09-01" />
+  <meta name="date" content="2016-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -88,7 +88,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">September 01, 2016</p>
+            <p style="margin-top: 6px; margin-left: -2px;">September 09, 2016</p>
           </hgroup>
   </slide>
 
@@ -285,7 +285,7 @@ iris</pre>
 <pre class = 'prettyprint lang-r'>iris_easy &lt;- tbl_df(iris)
 iris_easy</pre>
 
-<pre >## # A tibble: 150 x 5
+<pre >## # A tibble: 150 × 5
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;  &lt;fctr&gt;
 ## 1           5.1         3.5          1.4         0.2  setosa
@@ -326,7 +326,7 @@ iris_easy</pre>
 wide_sales &lt;- read_excel(&quot;Transforming_Data/data/wide_data.xlsx&quot;)
 head(wide_sales)</pre>
 
-<pre >## # A tibble: 4 x 13
+<pre >## # A tibble: 4 × 13
 ##   Region March April   May  June  July August September October November
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
 ## 1  North  5317  2858  4920  5787  2119   2439      3041    3811     5128
@@ -341,7 +341,7 @@ head(wide_sales)</pre>
   gather(&quot;month&quot;, &quot;sales&quot;, 2:13)
 head(tidy_sales)</pre>
 
-<pre >## # A tibble: 6 x 3
+<pre >## # A tibble: 6 × 3
 ##   Region month sales
 ##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
 ## 1  North March  5317
@@ -356,7 +356,7 @@ head(tidy_sales)</pre>
 <pre class = 'prettyprint lang-r'>tidy_sales %&gt;%
   spread(Region, sales)</pre>
 
-<pre >## # A tibble: 12 x 5
+<pre >## # A tibble: 12 × 5
 ##        month  East North South  West
 ## *      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1      April  1023  2858  3285  6761
@@ -399,12 +399,11 @@ miss_muffet %&gt;%
 
 <p>Best way to learn it is to use it&#8230;.a lot.</p>
 
-<pre class = 'prettyprint lang-r'>library(dplyr)
-parking &lt;- read.csv(&quot;Transforming_Data/data/parking_data.csv&quot;) %&gt;%
+<pre class = 'prettyprint lang-r'>parking &lt;- read.csv(&quot;Transforming_Data/data/parking_data.csv&quot;) %&gt;%
   tbl_df()
 parking</pre>
 
-<pre >## # A tibble: 234,983 x 11
+<pre >## # A tibble: 234,983 × 11
 ##    tag_number_masked date_of_infraction infraction_code
 ##               &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1           ***42781           20141123             210
@@ -431,7 +430,7 @@ parking %&gt;%
   select(date_of_infraction, infraction_description, 5) %&gt;%
   head()</pre>
 
-<pre >## # A tibble: 6 x 3
+<pre >## # A tibble: 6 × 3
 ##   date_of_infraction         infraction_description set_fine_amount
 ##                &lt;int&gt;                         &lt;fctr&gt;           &lt;int&gt;
 ## 1           20141123   PARK FAIL TO DISPLAY RECEIPT              30
@@ -448,7 +447,7 @@ parking %&gt;%
   select(inf_date = date_of_infraction, desc = infraction_description, fine = 5, time = 6) %&gt;%
   head()</pre>
 
-<pre >## # A tibble: 6 x 4
+<pre >## # A tibble: 6 × 4
 ##   inf_date                           desc  fine  time
 ##      &lt;int&gt;                         &lt;fctr&gt; &lt;int&gt; &lt;int&gt;
 ## 1 20141123   PARK FAIL TO DISPLAY RECEIPT    30  1554
@@ -465,7 +464,7 @@ parking %&gt;%
   select(starts_with(&#39;location&#39;)) %&gt;%
   head()</pre>
 
-<pre >## # A tibble: 6 x 4
+<pre >## # A tibble: 6 × 4
 ##   location1           location2 location3    location4
 ##      &lt;fctr&gt;              &lt;fctr&gt;    &lt;fctr&gt;       &lt;fctr&gt;
 ## 1       N/S        LOURDES LANE       W/O HOMEWOOD AVE
@@ -481,7 +480,7 @@ parking %&gt;%
   select(-starts_with(&#39;location&#39;)) %&gt;%
   head()</pre>
 
-<pre >## # A tibble: 6 x 7
+<pre >## # A tibble: 6 × 7
 ##   tag_number_masked date_of_infraction infraction_code
 ##              &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1          ***42781           20141123             210
@@ -500,7 +499,7 @@ parking %&gt;%
 <pre class = 'prettyprint lang-r'>parking %&gt;%
   filter(set_fine_amount &gt; 300)</pre>
 
-<pre >## # A tibble: 1,270 x 11
+<pre >## # A tibble: 1,270 × 11
 ##    tag_number_masked date_of_infraction infraction_code
 ##               &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1           ***54560           20141123             355
@@ -523,7 +522,7 @@ parking %&gt;%
 <pre class = 'prettyprint lang-r'>parking %&gt;%
   filter(infraction_code == 355, province != &quot;ON&quot;)</pre>
 
-<pre >## # A tibble: 18 x 11
+<pre >## # A tibble: 18 × 11
 ##    tag_number_masked date_of_infraction infraction_code
 ##               &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1           ***45827           20141127             355
@@ -554,7 +553,7 @@ parking %&gt;%
   select(infraction_code, infraction_description) %&gt;%
   distinct()</pre>
 
-<pre >## # A tibble: 146 x 2
+<pre >## # A tibble: 146 × 2
 ##    infraction_code         infraction_description
 ##              &lt;int&gt;                         &lt;fctr&gt;
 ## 1              210   PARK FAIL TO DISPLAY RECEIPT
@@ -576,7 +575,7 @@ parking %&gt;%
   select(location2, infraction_description, set_fine_amount) %&gt;%
   sample_n(10, replace = FALSE)</pre>
 
-<pre >## # A tibble: 10 x 3
+<pre >## # A tibble: 10 × 3
 ##              location2         infraction_description set_fine_amount
 ##                 &lt;fctr&gt;                         &lt;fctr&gt;           &lt;int&gt;
 ## 1       ST CLAIR AVE W    PARK-SIGNED HWY-PUBLIC LANE              40
@@ -595,7 +594,7 @@ parking %&gt;%
 <pre class = 'prettyprint lang-r'>parking %&gt;%
   slice(12:15)</pre>
 
-<pre >## # A tibble: 4 x 11
+<pre >## # A tibble: 4 × 11
 ##   tag_number_masked date_of_infraction infraction_code
 ##              &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1          ***49341           20141123               5
@@ -610,7 +609,7 @@ parking %&gt;%
 
 <pre class = 'prettyprint lang-r'>head(parking, n = 8)</pre>
 
-<pre >## # A tibble: 8 x 11
+<pre >## # A tibble: 8 × 11
 ##   tag_number_masked date_of_infraction infraction_code
 ##              &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1          ***42781           20141123             210
@@ -629,7 +628,7 @@ parking %&gt;%
 
 <pre class = 'prettyprint lang-r'>tail(parking)</pre>
 
-<pre >## # A tibble: 6 x 11
+<pre >## # A tibble: 6 × 11
 ##   tag_number_masked date_of_infraction infraction_code
 ##              &lt;fctr&gt;              &lt;int&gt;           &lt;int&gt;
 ## 1          ***48217           20141231               3
@@ -649,7 +648,7 @@ parking %&gt;%
   top_n(n = 10, wt = set_fine_amount) %&gt;%
   select(infraction_description, location2, set_fine_amount)</pre>
 
-<pre >## # A tibble: 55 x 3
+<pre >## # A tibble: 55 × 3
 ##            infraction_description           location2 set_fine_amount
 ##                            &lt;fctr&gt;              &lt;fctr&gt;           &lt;int&gt;
 ## 1  STND ONSTRT ACCESSIBLE NO PRMT      150 SUDBURY ST             450
@@ -673,7 +672,7 @@ parking %&gt;%
   select(2:8, -infraction_code) %&gt;%
   mutate(lower_location = str_to_lower(location2))</pre>
 
-<pre >## # A tibble: 234,983 x 7
+<pre >## # A tibble: 234,983 × 7
 ##    date_of_infraction         infraction_description set_fine_amount
 ##                 &lt;int&gt;                         &lt;fctr&gt;           &lt;int&gt;
 ## 1            20141123   PARK FAIL TO DISPLAY RECEIPT              30
@@ -697,7 +696,7 @@ parking %&gt;%
     tag_number = str_replace_all(tag_number_masked, pattern = &quot;\\*&quot;, replacement = &quot;&quot;)) %&gt;%
   select(-tag_number_masked, -infraction_code, -location3, -location4)</pre>
 
-<pre >## # A tibble: 234,983 x 10
+<pre >## # A tibble: 234,983 × 10
 ##    date_of_infraction         infraction_description set_fine_amount
 ##                 &lt;int&gt;                         &lt;fctr&gt;           &lt;int&gt;
 ## 1            20141123   PARK FAIL TO DISPLAY RECEIPT              30
@@ -721,7 +720,7 @@ parking %&gt;%
   mutate(rank = min_rank(-set_fine_amount)) %&gt;%
   arrange(rank)</pre>
 
-<pre >## # A tibble: 234,983 x 3
+<pre >## # A tibble: 234,983 × 3
 ##    tag_number_masked set_fine_amount  rank
 ##               &lt;fctr&gt;           &lt;int&gt; &lt;int&gt;
 ## 1           ***54560             450     1
@@ -741,7 +740,7 @@ parking %&gt;%
 <pre class = 'prettyprint lang-r'>parking %&gt;%
   summarise(total_fee = sum(set_fine_amount))</pre>
 
-<pre >## # A tibble: 1 x 1
+<pre >## # A tibble: 1 × 1
 ##   total_fee
 ##       &lt;int&gt;
 ## 1  10885905</pre>
@@ -752,7 +751,7 @@ parking %&gt;%
   arrange(desc(total_fee)) %&gt;%
   mutate(rank = min_rank(-total_fee))</pre>
 
-<pre >## # A tibble: 65 x 3
+<pre >## # A tibble: 65 × 3
 ##    province total_fee  rank
 ##      &lt;fctr&gt;     &lt;int&gt; &lt;int&gt;
 ## 1        ON  10300590     1
@@ -777,7 +776,7 @@ parking %&gt;%
     sd = sd(set_fine_amount)) %&gt;%
   arrange(desc(mean_amt))</pre>
 
-<pre >## # A tibble: 65 x 5
+<pre >## # A tibble: 65 × 5
 ##    province mean_amt max_amt     n       sd
 ##      &lt;fctr&gt;    &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;
 ## 1        TX 63.80368     450   163 78.17129
@@ -811,7 +810,7 @@ inner_join(small_parking, prov_names) %&gt;%
 <pre >## Warning in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
 ## factors with different levels, coercing to character vector</pre>
 
-<pre >## # A tibble: 552 x 4
+<pre >## # A tibble: 552 × 4
 ##    province        location2 set_fine_amount   long_name
 ##       &lt;chr&gt;           &lt;fctr&gt;           &lt;int&gt;      &lt;fctr&gt;
 ## 1        NS   82 LINDYLOU RD              40 Nova Scotia
@@ -834,7 +833,7 @@ inner_join(small_parking, prov_names) %&gt;%
 <pre >## Warning in left_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
 ## factors with different levels, coercing to character vector</pre>
 
-<pre >## # A tibble: 1,381 x 4
+<pre >## # A tibble: 1,381 × 4
 ##    province        location2 set_fine_amount   long_name
 ##       &lt;chr&gt;           &lt;fctr&gt;           &lt;int&gt;      &lt;fctr&gt;
 ## 1        NY   444 FRONT ST W              30          NA
@@ -853,19 +852,19 @@ inner_join(small_parking, prov_names) %&gt;%
 
 <pre class = 'prettyprint lang-r'>anti_join(small_parking, prov_names)</pre>
 
-<pre >## # A tibble: 4,815 x 3
-##    province           location2 set_fine_amount
-##      &lt;fctr&gt;              &lt;fctr&gt;           &lt;int&gt;
-## 1        DE      531 CLINTON ST              30
-## 2        DE 270 WELLINGTON ST W              60
-## 3        DE       60 GRANGE AVE              30
-## 4        DE    2075 BAYVIEW AVE              30
-## 5        DE      2464 WESTON RD              30
-## 6        DE          FRONT ST E             150
-## 7        DE          BLOOR ST W              40
-## 8        DE       76 SOUDAN AVE              40
-## 9        UT           17 ELM ST              30
-## 10       UT     825 COXWELL AVE              30
+<pre >## # A tibble: 4,815 × 3
+##    province          location2 set_fine_amount
+##      &lt;fctr&gt;             &lt;fctr&gt;           &lt;int&gt;
+## 1        TX     150 SUDBURY ST             450
+## 2        TX      31 BRUNEL CRT              40
+## 3        TX 284 ST CLARENS AVE              30
+## 4        TX     12 JILLSON AVE              30
+## 5        TX       8 LYNDALE DR              40
+## 6        TX     713 EUCLID AVE              40
+## 7        TX     10 JILLSON AVE              30
+## 8        TX      205 HILDA AVE              30
+## 9        TX      15 VIOLET AVE              30
+## 10       TX        1 ALBERT ST              60
 ## # ... with 4,805 more rows</pre></article></slide>
 
 

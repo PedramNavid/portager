@@ -14,8 +14,7 @@ This is a work in progress and is really here to capture my thoughts before I fo
 7. Transforming data
 8. Modeling data
 9. Importing data
-10. Tidying data
-11. Version control
+10. Version control
 
 ## The Meta Stuff
 11. The Science of Data Science

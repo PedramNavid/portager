@@ -1,8 +1,14 @@
 ---
 title: "Starting an R Project"
 author: "Pedram Navid"
-date: "August 5, 2016"
-output: html_document
+date: "September 09, 2016"
+fontsize: 8pt
+output:
+  ioslides_presentation:
+    fig_height: 3
+    fig_width: 5
+    smaller: yes
+    widescreen: yes
 ---
 
 # Starting a Project
@@ -54,6 +60,8 @@ project grows.
     * README
     * TODO
     
+## Folders
+
 Each of these folders serve a specific purpose:
 
 * `data`: any data you import will be in one of two folders:
