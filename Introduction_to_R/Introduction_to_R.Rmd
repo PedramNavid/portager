@@ -15,6 +15,24 @@ PROJ_ROOT <- rprojroot::find_rstudio_root_file()
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 knitr::opts_knit$set(root.dir = PROJ_ROOT)
 ```
+## Before we begin
+
+- Did you install R and RStudio? If not, start it now. Instructions
+are in the booking
+
+## About Me
+
+> - BSc at University of Toronto: Psych and English
+> - Joined RBC in 2006
+> - Technial Support (1st/2nd line) for Helpdesk (TSC)
+> - Business Analyst for Enterprise Service Desk (ESD)
+> - Problem Manager for IPM (Incident & Problem Management)
+> - Analyst with SSPM (Sales and Service Performance Management)
+> - Analyst with PSA (Performance Strategy & Analytics)
+
+## 
+
+![](img/pilot.jpg)
 
 
 ## In the beginning there was S..

@@ -93,6 +93,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -226,84 +227,14 @@ head(dataset_tag)</code></pre>
 ## 5 1030      JPY THISOTHERTHING FALSE FALSE FALSE FALSE         0
 ## 6 1037      JPY   CMS_CAPFLOOR  TRUE FALSE FALSE FALSE         1</code></pre>
 <pre class="r"><code>filter(dataset_tag, swap, tag_count &gt; 1) %&gt;%
-  head() %&gt;%
-  kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">id</th>
-<th align="left">currency</th>
-<th align="left">alias</th>
-<th align="left">cap</th>
-<th align="left">swap</th>
-<th align="left">inf</th>
-<th align="left">spr</th>
-<th align="right">tag_count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1003</td>
-<td align="left">CAD</td>
-<td align="left">ZCINFLATIONSWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">1004</td>
-<td align="left">USD</td>
-<td align="left">ZCINFLATIONSWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="right">1006</td>
-<td align="left">EUR</td>
-<td align="left">ZCINFLATIONSWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">1007</td>
-<td align="left">EUR</td>
-<td align="left">ZCINFLATIONSWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="right">1010</td>
-<td align="left">CAD</td>
-<td align="left">CMS_SPREAD_SWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">1014</td>
-<td align="left">JPY</td>
-<td align="left">ZCINFLATIONSWAP</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-</tbody>
-</table>
+  head() </code></pre>
+<pre><code>##     id currency           alias   cap swap   inf   spr tag_count
+## 1 1003      CAD ZCINFLATIONSWAP FALSE TRUE  TRUE FALSE         2
+## 2 1004      USD ZCINFLATIONSWAP FALSE TRUE  TRUE FALSE         2
+## 3 1006      EUR ZCINFLATIONSWAP FALSE TRUE  TRUE FALSE         2
+## 4 1007      EUR ZCINFLATIONSWAP FALSE TRUE  TRUE FALSE         2
+## 5 1010      CAD CMS_SPREAD_SWAP FALSE TRUE FALSE  TRUE         2
+## 6 1014      JPY ZCINFLATIONSWAP FALSE TRUE  TRUE FALSE         2</code></pre>
 </div>
 
 
@@ -317,6 +248,7 @@ head(dataset_tag)</code></pre>
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

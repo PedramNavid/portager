@@ -6,8 +6,9 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "../")
+ROOT_DIR = rprojroot::find_root("README.md")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = ROOT_DIR)
 ```
 
 From David Doherty: https://connect.fg.rbc.com/message/587343#587343
@@ -77,6 +78,7 @@ First, let's import some data from the web
 
 ```{r, message = F}
 library(readxl)
+library(dplyr)
 tri <- read_excel("practical_examples/itu-world-triathlon-series-male.xls")
 head(tri)
 ```
@@ -151,6 +153,7 @@ find_best("Matt Sharpe")
 For everyone aged 25-29 in an upcoming event, show me their results where available, and order them by finishing time
 
 ```{r}
+library(ggplot2)
 # create approx. age column and get rid of unneeded columns
 tri_small <- tri %>%
   mutate(age = 2016 - YOB) %>%
@@ -169,4 +172,4 @@ tri_small %>%
 ggplot(tri_small, aes(age, best_score, color = events)) +
   geom_point() + 
   geom_smooth()
-  
+```

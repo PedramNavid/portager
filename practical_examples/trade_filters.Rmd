@@ -71,8 +71,5 @@ filter(dataset_tag, !swap, currency == "JPY") %>%
   head()
 
 filter(dataset_tag, swap, tag_count > 1) %>%
-  head() %>%
-  kable()
-
-
+  head() 
 ```

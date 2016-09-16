@@ -15,6 +15,8 @@ knitr::opts_knit$set(root.dir = ROOT_DIR)
 
 ```{r}
 library(readxl)
+library(stringr)
+# Download from here: http://lil.devfg.rbc.com/lil/pvi
 
 analytics <- read_excel("practical_examples/analytics.xls", sheet = 3, skip = 4)
 colnames(analytics) <- c('browser', 'version', 'os', 'sessions')
@@ -42,12 +44,12 @@ top_n(browser_sort, 10, sessions)
 
 # % of totals
 browser_percent <- browser_sort %>%
-  mutate(session_weight = sessions / sum(sessions))
+  mutate(percent_of_visits = sessions / sum(sessions))
 head(browser_percent)
 
 # Filter by >1%
 browser_filter <- browser_percent %>% 
-  filter(session_weight > 0.01)
+  filter(percent_of_visits > 0.01)
 head(browser_filter)
 
 # Put it all together
@@ -55,14 +57,31 @@ result <- analytics %>%
   group_by(browser) %>%
   summarise(sessions = sum(sessions)) %>%
   arrange(desc(sessions)) %>%
-  mutate(session_weight = sessions / sum(sessions)) %>%
-  filter(session_weight > 0.01)
+  mutate(percent_of_visits = sessions / sum(sessions)) %>%
+  filter(percent_of_visits > 0.01)
 result
 
 analytics %>%
   group_by(browser, os) %>% 
   summarise(sessions = sum(sessions)) %>%
   arrange(desc(sessions))
+
+
+# By major version
+
+
+# Regex: see http://www.regular-expressions.info/lookaround.html
+# Looks for all digits followed by an initial period, returning only digits. 
+regex <- "\\d+(?=.)"
+
+
+browser_version <- analytics %>%
+  select(browser, version, sessions) %>%
+  mutate(version_trim = str_match(version, regex)) %>% 
+  group_by(browser, version_trim) %>%
+  summarise(sessions = sum(sessions)) %>%
+  mutate(percent_of_visits = sessions / sum(analytics$sessions)) %>%
+  arrange(desc(percent_of_visits))
 ```
 ```{r plot}
 library(ggplot2)
@@ -75,5 +94,24 @@ ggplot(result, aes(reorder(browser, -sessions), weight = sessions))  +
   scale_y_continuous(labels = comma) + 
   theme_hc()
  
-
 ```
+
+
+# Reporting
+
+## Top Browsers
+
+```{r}
+# Supported browser list)
+browser_percent %>%
+  select(browser, percent_of_visits) %>%
+  mutate(percent_of_visits = percent(percent_of_visits))
+```
+
+## Top Browser/Versions
+```{r}
+browser_version %>%
+  select(browser, percent_of_visits) %>%
+  mutate(percent_of_visits = percent(percent_of_visits))
+```
+
