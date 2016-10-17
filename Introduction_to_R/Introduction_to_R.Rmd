@@ -75,7 +75,7 @@ execute code (like this one) or build web apps (Shiny).
 
 *** 
 
-```{r echo=F, warning = F}
+```{r echo=T, fig.height=5, fig.width=8, warning=F}
 library(GGally)
 library(ggplot2)
 ggpairs(iris, aes(colour = Species))

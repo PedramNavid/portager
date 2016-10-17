@@ -53,12 +53,10 @@ project grows.
 
 * my_project/
     * data/
-        * raw/
-        * datasets/
-    * graphs/
-    * reports/
+    * Rdatasets/
+    * output/
+    * img/
     * src/
-    * tests/
     * README
     * TODO
     
@@ -66,23 +64,18 @@ project grows.
 
 Each of these folders serve a specific purpose:
 
-* `data`: any data you import will be in one of two folders:
-* `data/raw`: raw data is any data sourced from outside of R, be it from a 
-website, an Excel document, a csv text file, a SAS dataset. 
+* `data`: any raw data you import. I try my best not to modify these files 
+externally. 
 * `data/datasets`: any datasets you save that are generated in R are saved here. 
 R has a proprietary dataset format that makes it easy to save large datasets
 you created within R to reload again later. This is useful when, for example,
 you are importing large queries from a database, but don't want to query
 the database every time you rerun your project. 
-* `doc`: your code should be documented, but if you need supplementary
-documentation about your analysis, you can store it here. 
-* `graphs`: any plots or graphs you generate should be save here as an image.
-* `reports`: any reports you output, such as PDF and Word documents using
+* `img`: any plots or graphs you generate should be save here as an image.
+* `output`: any reports you output, such as PDF and Word documents using
 R Markdown notebooks are saved here
 * `src`: this is where you store the meat and potatoes of your project: your R
 code and markdown documents. 
-* `tests`: any test cases you've created go here. This is where you would
-test your source data sets for quality, possibly using the `testthat` package.
 * `README`: a quick introduction to your project that will help people unfamiliar
 with your project get quickly up-to-speed with what it does and how it runs.
 * `TODO`: notes for yourself (and others) and what you still need to do to

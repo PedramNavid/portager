@@ -26,7 +26,8 @@ environments, you may want to make a few changes.
 ## Organize your life
 Or at least your project folders. Here's how I do it:  
 
-* Base folder for all my work: **Documents\R\workspace**
+* Base folder for all my work: Documents\\R\\workspace
+
 * In each folder, I create a subfolder for each project
 * A project could be one analysis or many, but in general should share a
 common goal, maybe common data.
@@ -34,13 +35,13 @@ common goal, maybe common data.
 folders. More details in the **Starting A Project** slide.
 
 ## Some Recommended Options{.small}
-<<div class="columns-2">
+<div class="columns-2">
 ![R Options Screenshot](img/r_options.png)
 
 Change Options through Tools > Global Options.
 
 * Restore .RData into workspace at startup: Unchecked 
 * Save workspace to .RData on exit: Never (Drives good behaviour)
-* Use Internet Explorer: checked
-* Use Secure Download Method for HTTP: unchecked if behind a corporate firewall
+* Under Packages: Use Internet Explorer: checked
+* Under Packages: Use Secure Download Method for HTTP: unchecked if behind a corporate firewall
 </div>

@@ -16,7 +16,7 @@ my_render <- function(code, ...) {
   out <- file.path(PROJ_ROOT, "outputs")
   render(code, output_format = 'all',
     output_dir = out,
-    clean = F)
+    clean = TRUE)
 }
 
 mapply(my_render, render_files)
