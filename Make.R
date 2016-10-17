@@ -1,4 +1,6 @@
 library(rmarkdown)
+library(rprojroot)
+PROJ_ROOT <- find_root(has_file("README.md"))
 
 render_files = c("Introduction_to_R/Introduction_to_R.Rmd",
   "Installing_R/Installing_R.Rmd",
@@ -9,6 +11,13 @@ render_files = c("Introduction_to_R/Introduction_to_R.Rmd",
   "Transforming_Data/Transforming_Data.Rmd",
   "Importing_Data/Importing_Data.Rmd")
 
-for (f in render_files) {
-  render(f, output_format = 'all', envir = new.env())
+my_render <- function(code, ...) {
+  code <- file.path(PROJ_ROOT, code)
+  out <- file.path(PROJ_ROOT, "outputs")
+  render(code, output_format = 'all',
+    output_dir = out,
+    clean = F)
 }
+
+mapply(my_render, render_files)
+
