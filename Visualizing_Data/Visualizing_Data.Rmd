@@ -132,7 +132,7 @@ ggplot(data=Cars93, aes(x = Horsepower, y = MPG.city, colour = Origin)) +
   geom_point()
 ```
 
-# Continous colour
+## Continous colour
 ```{r}
 ggplot(data=Cars93, aes(Horsepower, MPG.city, colour = Weight)) + 
   geom_point()
@@ -160,13 +160,6 @@ ggplot(data=Cars93, aes(Type, fill = DriveTrain)) +
 ```{r}
 # Not as useful as colour
 ggplot(data=Cars93, aes(Horsepower, Weight, shape = Type)) +
-  geom_point()
-```
-
-## Size
-```{r}
-# Size aesthethic
-ggplot(data=Cars93, aes(Horsepower, Price, size = EngineSize)) + 
   geom_point()
 ```
 
@@ -210,6 +203,12 @@ ggplot(Cars93, aes(Horsepower)) +
 ## freqpoly
 ```{r}
 ggplot(Cars93, aes(MPG.city)) +
+  geom_freqpoly(binwidth=10)
+```
+
+## freqpoly with colour
+```{r}
+ggplot(Cars93, aes(MPG.city, colour = Origin)) +
   geom_freqpoly(binwidth=10)
 ```
 
