@@ -12,12 +12,6 @@
 7. Transforming data
 8. Modeling data
 9. Importing data
-10. Version control
-
-## The Meta Stuff
-11. The Science of Data Science
-12. The Art of Data Science
-13. Additional resources
 
 
 

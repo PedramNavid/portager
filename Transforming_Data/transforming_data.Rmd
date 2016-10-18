@@ -23,14 +23,14 @@ knitr::opts_knit$set(root.dir = PROJ_ROOT)
 
 Why transform? 
 
-> Data rarely comes in the format you want it
-> Even if it does, you always want to do something with it
-> Good work upfront saves headache down the road, so don't skimp!
+> - Data rarely comes in the format you want it
+> - Even if it does, you always want to do something with it
+> - Good work upfront saves headache down the road, so don't skimp!
 
 ## Tidy Data
 
 Data should be tidy when working with R. 
-We have a tendency to create untidy data, especially in finance.
+We have a tendency to create untidy data!
 
 "tidy datasets are all alike but every messy dataset is messy in its own way"
 
@@ -42,6 +42,7 @@ Tidy data is:
 ## First Steps
 
 Use *dplyr* and *tidyr* to help clean and manipulate data.
+
 Check out the cheatsheet: Help > Cheatsheets > Data Manipulation with dplyr,tidyr
 
 ## Syntax
